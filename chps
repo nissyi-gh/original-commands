@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "どのプロンプトを使いますか？"
+PS3="番号を入力してください: "
+
+select type in Time+Directory+Permission Time+Permission Directory+Permission Permission
+do
+  case $type in
+    Time+Directory+Permission)
+      PROMPT='%F{cyan}%*%f %F{green}[%~]%f %# '
+      break
+      ;;
+    Time+Permission)
+      PROMPT='%F{cyan}%*%f %# '
+      break
+      ;;
+    Directory+Permission)
+      PROMPT='%F{green}[%~]%f %# '
+      break
+      ;;
+    Permission)
+      PROMPT='%F{green}%#%f '
+      break
+      ;;
+    *)
+      echo "無効な選択です。"
+      ;;
+  esac
+done
+
